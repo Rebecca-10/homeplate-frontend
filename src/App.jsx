@@ -1,5 +1,7 @@
-import RecipeList from './components/Homepage/Homepage';
-import * as recipeService from './services/recipeService/recipeService'
+import * as recipeService from './services/recipeService'
+
+import Homepage from './components/Homepage/Homepage';
+import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 
 import './App.css'
 
@@ -21,7 +23,8 @@ const App = () => {
   return(
     <>
       <Routes>
-        <Route path='/recipes' element={<RecipeList recipes={recipes}/>}/>
+        <Route path='/recipes' element={<Homepage recipes={recipes}/>}/>
+        <Route path='/recipes/:recipeId' element={<RecipeDetails/>}/>
       </Routes>
     </>
   );
