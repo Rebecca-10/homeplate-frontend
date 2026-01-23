@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, Link } from 'react-router';
 import { useState, useEffect, /*useContext*/ } from 'react';
 import * as recipeService from '../../services/recipeService';
 
@@ -33,6 +33,7 @@ const RecipeDetails = ({handleDeleteRecipe}) =>{
         <p>{recipe.description}</p>
         {/* {recipe.author._id === user._id && ( */}
               {/* <> */}
+                <Link to={`/recipes/${recipeId}/edit`}>Edit</Link>
                 <button onClick={()=> handleDeleteRecipe(recipeId)}>Delete</button>
               {/* </> */}
             {/* )} */}
