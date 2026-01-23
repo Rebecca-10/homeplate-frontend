@@ -13,7 +13,7 @@ const RecipeDetails = ({handleDeleteRecipe}) =>{
     // const { user } = useContext(UserContext);
 
     const [recipe, setRecipe] = useState(null);
-
+    const [editingCommentId, setEditingCommentId] = useState(null);
     useEffect(()=>{
         const fetchRecipe = async () =>{
         const recipeData = await recipeService.show(recipeId)
@@ -31,6 +31,17 @@ const RecipeDetails = ({handleDeleteRecipe}) =>{
     const handleDeleteComment = async(commentId)=>{
         await recipeService.deleteComment(recipeId,commentId)
         setRecipe({...recipe, comments: recipe.comments.filter((comment)=> commentId !== comment._id)})
+    }
+
+    const handleEditComment =async (commentId,data) => {
+      const updated = await recipeService.updateComment(recipeId, commentId, data);
+
+      setRecipe((prev) => ({
+        ...prev,
+        comments: prev.comments.map((comment) => (comment._id === commentId ? {...updated, author:comment.author} : comment)),
+      }));
+
+      setEditingCommentId(null);
     }
 
     return (
@@ -53,7 +64,11 @@ const RecipeDetails = ({handleDeleteRecipe}) =>{
       </section>
       <section>
         <h2>Comments</h2>
-        <CommentForm handleAddComment={handleAddComment}/>
+        <CommentForm 
+            submitLabel="Submit comment"
+            onSubmit={handleAddComment}
+
+        />
         {!recipe.comments.length && <p> There are no comments. <br/>Be the first to comment</p>}
 
         {recipe.comments.map((comment)=>(
@@ -63,10 +78,24 @@ const RecipeDetails = ({handleDeleteRecipe}) =>{
                         {`${comment.author.username} posted on ${new Date(comment.createdAt).toLocaleDateString()}`}
                     </p>
                 </header>
-                <p>{comment.text}</p>
+                {editingCommentId === comment._id?(
+                    <CommentForm
+                        key={comment._id} 
+                        initialText={comment.text}
+                        submitLabel='Save'
+                        onSubmit={(data) => handleEditComment(comment._id,data)}/>
+
+                ):(<p>{comment.text}</p>)}
 
                 {/* <> */}
-                    <Link to={`/recipes/${recipeId}/comments/${comment._id}/edit`}>Edit</Link>
+                    <button 
+                        type="button"
+                        onClick={()=>{
+                            setEditingCommentId(comment._id);
+                        }} 
+                    >
+                        Edit
+                    </button>
                     <button onClick={()=> handleDeleteComment(comment._id)}>Delete</button>
                 {/* </> */}
                 {/* )} */}

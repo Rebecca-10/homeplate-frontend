@@ -53,7 +53,7 @@ const deleteRecipe = async (recipeId)=>{
     }
 }
 
-const udpate = async (recipeId, recipeFormData)=>{
+const update = async (recipeId, recipeFormData)=>{
     try{
         const res= await fetch(`${BASE_URL}/${recipeId}`,{
             method: 'PUT',
@@ -104,12 +104,28 @@ const deleteComment = async (recipeId,commentId)=>{
 
 }
 
+const updateComment = async (recipeId, commentId, commentFormData) =>{
+    try{
+        const res= await fetch(`${BASE_URL}/${recipeId}/comments/${commentId}`,{
+            method:"PUT",
+            headers:{
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(commentFormData)
+        });
+        return res.json()
+    }catch(err){
+        console.log(err)
+    }
+}
 export{
     index,
     show,
     create,
     deleteRecipe,
-    udpate,
+    update,
     createComment,
-    deleteComment
+    deleteComment,
+    updateComment
 }
