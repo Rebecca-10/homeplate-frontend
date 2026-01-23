@@ -1,22 +1,20 @@
 import { useState } from "react"
 
 
-const CommentForm = ({handleAddComment}) =>{
-
-    const [formData, setFormData]= useState({text: ""});
-
+const CommentForm = ({ initialText = "", onSubmit, submitLabel = "Submit" }) =>{
+    
+    const [formData, setFormData]= useState({text: initialText});
+    
     const handleChange=(evt)=>{
         setFormData({...formData, [evt.target.name]: evt.target.value})
 
     }
-
     const handleSubmit = (evt)=>{
         evt.preventDefault();
-
-        handleAddComment(formData)
+        onSubmit(formData);
         setFormData({text:""})
-
     }
+
 
     return (
         <form onSubmit ={handleSubmit} >
@@ -29,7 +27,7 @@ const CommentForm = ({handleAddComment}) =>{
                 value={formData.text}
                 onChange={handleChange}
             />
-            <button type="submit"> Submit comment</button>
+            <button type="submit"> {submitLabel}</button>
         </form>
     )
 
