@@ -8,12 +8,14 @@ import Homepage from './components/Homepage/Homepage';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import RecipeForm from './components/RecipeForm/RecipeForm';
 import CommentForm from './components/CommentForm/CommentForm';
+import SignUpForm from './components/SignUpForm/SignUpForm';
+import SignInForm from './components/SignInForm/SignInForm';
+import NavBar from './components/NavBar/NavBar';
 
-import './App.css'
 
 
 const App = () => {
-
+                      
   const navigate = useNavigate();
   const [recipes, setRecipes] = useState([])
 
@@ -76,8 +78,11 @@ const App = () => {
   };
 
   return(
-    <>
+     <>
+      <NavBar />
       <Routes>
+        <Route path='/sign-up' element={<SignUpForm />} />
+        <Route path="/sign-in" element={<SignInForm />} />
         <Route path="/" element={<PublicHome />} />
         <Route path='/recipes' element={<Homepage recipes={recipes}/>}/>
         <Route path='/recipes/new' element={<RecipeForm handleAddRecipe={handleAddRecipe} />}/>
@@ -89,3 +94,4 @@ const App = () => {
 };
 
 export default App;
+
