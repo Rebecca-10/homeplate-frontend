@@ -6,6 +6,8 @@ import NavBar from './components/NavBar/NavBar';
 
 import SignUpForm from './components/SignUpForm/SignUpForm';
 
+import SignInForm from './components/SignInForm/SignInForm';
+
 const App = () => {
 
   return (
@@ -14,6 +16,7 @@ const App = () => {
      
       <Routes>
         <Route path='/sign-up' element={<SignUpForm />} />
+         <Route path="/sign-in" element={<SignInForm />} />
       </Routes>
     </>
   );
