@@ -37,11 +37,19 @@ const RecipeCard=({recipe,toggleLike})=>{
     const handleChangeFollow = async (targetUserId) =>{
         if(!userId) return;
         if(targetUserId === userId) return;
+
+        const nextFollowed = !followed;
+
+        setFollowed(nextFollowed)
         
         try{
-           await followService.followUser(targetUserId)
-           setFollowed(true)
+            if(nextFollowed){
+                await followService.followUser(targetUserId)
+            }else{
+                await followService.unfollowUser(targetUserId)
+            }
         }catch(err){
+            setFollowed(!nextFollowed)
             console.log(err)
         }
     }

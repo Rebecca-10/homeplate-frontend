@@ -21,6 +21,27 @@ const followUser = async (userId) =>{
     
 }
 
+const unfollowUser = async (userId) =>{
+    try{
+        const res = await fetch(`${BASE_URL}/${userId}/follow`,{
+            method:'DELETE',
+            headers:{
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.err || 'Failed to unfollow user');
+        }
+        return res.json()
+    }catch(err){
+        console.log(err)
+        throw err;
+    }
+}
+
 export{
-    followUser
+    followUser,
+    unfollowUser
 }
