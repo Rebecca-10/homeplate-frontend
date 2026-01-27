@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import RecipeCard from "../common/RecipeCard.jsx/RecipeCard";
+import RecipeCard from "../common/RecipeCard/RecipeCard";
 import * as recipeService from '../../services/recipeService';
 
 
