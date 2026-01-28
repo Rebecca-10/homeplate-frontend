@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import foodImage from '../../assets/food.png';
-import heartImage from '../../assets/heart.png';
-import commentsImage from '../../assets/comments.png'
+import { Link } from "react-router";
+ import foodImage from '../../assets/food.png';
+ import heartImage from '../../assets/heart.png';
+ import commentsImage from '../../assets/comments.png'
 import FeatureCard from "../FeatureCard/FeatureCard";
 import "./publicHome.css";
 
@@ -12,7 +12,7 @@ export default function PublicHome() {
       {/* Top bar */}
       <header className="public-home__header">
         <h2 className="logo">HomePlate</h2>
-        <Link to="/login" className="btn btn-primary">
+        <Link to="/sign-in" className="btn btn-primary">
           Log in
         </Link>
       </header>
@@ -31,10 +31,10 @@ export default function PublicHome() {
             and share your own.
           </p>
           <div className="main-actions">
-            <Link to="/signup" className="btn btn-outline">
+            <Link to="/sign-up" className="btn btn-outline">
               Create account
             </Link>
-            <Link to="/login" className="btn btn-primary">
+            <Link to="/sign-in" className="btn btn-primary">
               Log in
             </Link>
           </div>
@@ -51,7 +51,7 @@ export default function PublicHome() {
         </section>
   {/* Bottom  */}
         <div className="bottom">
-          <Link to="/signup" className="btn btn-outline">
+          <Link to="/sign-up" className="btn btn-outline">
             Create account
           </Link>
         </div>
