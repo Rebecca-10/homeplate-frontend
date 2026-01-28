@@ -79,7 +79,9 @@ const RecipeCard=({recipe,toggleLike, followingIds, handleFollow})=>{
                             <h2>{recipe.title}</h2>
                         </div>
                         <div className="recipe-type">
-                            <p className="type">{recipe.typeRecipe}</p>
+                            <p className={`type type-${recipe.typeRecipe.toLowerCase()}`}>
+                                {recipe.typeRecipe}
+                            </p>
                         </div>
                         <div className="time-serving-info">
                             <div className="time-info">
