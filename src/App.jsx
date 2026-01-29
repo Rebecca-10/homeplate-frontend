@@ -145,10 +145,10 @@ const App = () => {
       <NavBar />
       <main className="app-content">
         <Routes>
-          <Route path="/" element={<RecipeList recipes={recipes} toggleLike={toggleLike} followingIds={followingIds} handleFollow={handleFollow} />} />
+          <Route path="/" element={<RecipeList recipes={recipes} toggleLike={toggleLike} followingIds={followingIds} handleFollow={handleFollow}/>} />
           <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
-          <Route path="/my-recipes" element={<RecipeList recipes={recipes} toggleLike={toggleLike} />} />
-          <Route path="/recipes/:recipeId" element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} toggleLike={toggleLike} followingIds={followingIds} handleFollow={handleFollow}/>} />
+          <Route path="/my-recipes" element={<RecipeList recipes={recipes} toggleLike={toggleLike} followingIds={followingIds} handleFollow={handleFollow}/>} />
+          <Route path="/recipes/:recipeId" element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} toggleLike={toggleLike} followingIds={followingIds} handleFollow={handleFollow}  />} />
           <Route path="/recipes/:recipeId/edit" element={<RecipeForm handleUpdateRecipe={handleUpdateRecipe} />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/follow" element={<Follow />} />
