@@ -6,6 +6,10 @@ import { useNavigate } from 'react-router';
 import { signIn } from '../../services/authService';
 
 import { UserContext } from '../../contexts/UserContext';
+import './SignInForm.css';
+import signinPhoto from "../../assets/foodphoto.png"
+import { Link } from 'react-router';
+
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -35,8 +39,16 @@ const SignInForm = () => {
   };
 
   return (
-    <main>
-      <h1>Sign In</h1>
+    <main className="signin">
+
+       <section className="signin__left" >
+      <img src={signinPhoto}/>
+    </section>
+    <section className="signin__right">
+      <h1 className="signin__title">
+        HomePlate
+      </h1>
+      <h3> Sign In </h3>
       <p>{message}</p>
       <form autoComplete='off' onSubmit={handleSubmit}>
         <div>
@@ -50,8 +62,8 @@ const SignInForm = () => {
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
+      
+       
           <label htmlFor='password'>Password:</label>
           <input
             type='password'
@@ -63,11 +75,23 @@ const SignInForm = () => {
             required
           />
         </div>
+        
         <div>
-          <button>Sign In</button>
-          <button onClick={() => navigate('/')}>Cancel</button>
+          <button className= "signin__btn"> Sign In</button>
+          <button className= "cancel__btn"
+          onClick={() => navigate('/')}>Cancel</button>
         </div>
+
+
       </form>
+      <p className="signin_switch">
+      Don’t have an account?{' '}
+      <Link to="/sign-up">Sign up!</Link>
+      </p>
+
+
+      
+      </section>
     </main>
   );
 };
